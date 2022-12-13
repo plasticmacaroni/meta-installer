@@ -136,7 +136,7 @@ class Downloader:
                     except:
                         hkey = None
                         print(sys.exc_info())
-                        exit()
+                        sys.exit()
                 else: 
                     self.find_steam_installation = True
                 steam_paths = winreg.QueryValueEx(hkey, "InstallPath")
@@ -157,7 +157,7 @@ class Downloader:
                 if len(self.install_config["installation_paths"]) == 0:
                     print("Could not find Steam installation directory. You could always disable Steam detection in settings if you're not using Steam.")
                     self.set_message("Could not find Steam installation directory. You could always disable Steam detection in settings if you're not using Steam.")
-                    exit()
+                    sys.exit()
                 else:
                     os.chdir(self.install_config["confirmed_install"])
                 self.find_steam_installation == True
@@ -242,7 +242,7 @@ class Downloader:
                                     if result_bool == False:
                                         os.remove(website["file_name"]) 
                                         self.set_message("Removing faulty download, please restart installer to resume.")
-                                        exit()
+                                        sys.exit()
                                     else: 
                                         self.install_config["install_steps"][index]["website"]["size_checked"] = True
                                         self.set_message("Filesize match. Press NEXT to continue...")
