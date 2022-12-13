@@ -154,6 +154,7 @@ class Downloader:
                             self.set_message("Found the Steam installation directory at:\n\n" + self.install_config["confirmed_install"])
                     except e:
                         print(e)
+                        sys.exit()
                 if len(self.install_config["installation_paths"]) == 0:
                     print("Could not find Steam installation directory. You could always disable Steam detection in settings if you're not using Steam.")
                     self.set_message("Could not find Steam installation directory. You could always disable Steam detection in settings if you're not using Steam.")
