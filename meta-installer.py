@@ -152,7 +152,7 @@ class Downloader:
                         if ret == True:
                             self.install_config["confirmed_install"] = installation_path + "/steamapps/common/" + self.install_config["default_config"]["game_folder"]
                             self.set_message("Found the Steam installation directory at:\n\n" + self.install_config["confirmed_install"])
-                    except e:
+                    except Exception as e:
                         print(e)
                         sys.exit()
                 if len(self.install_config["installation_paths"]) == 0:
