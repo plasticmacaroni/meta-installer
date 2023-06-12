@@ -1,0 +1,33 @@
+default_config:
+  version: "0.1"
+  user_agent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36 Edge/12.246'
+  steam_setup: True
+  driver: "requests" #no other drivers currently supported, but there's no need yet
+  game_folder: "Jedi Academy"
+  virtual_game_folder: "Jedi Academy Visions Ultimate Academy"
+  main_installer_repo_location: "https://github.com/plasticmacaroni/meta-installer/archive/refs/heads/main.zip"
+
+install_steps:
+  - requirement: 
+      disk_space: 2 #in GB
+  - website:
+      download_URL: "https://github.com/JACoders/OpenJK/releases/download/latest/OpenJK-windows-x86_64.zip"
+      sub_directory: "GameData"
+      file_name: "OpenJK-windows-x86_64.zip"
+      description: "OpenJK install files"
+      download_message: "OpenJK patches many issues and problems."
+      check:
+        - after_install_file_or_dir: "openjk_sp.x86_64.exe"
+  - website: 
+      download_URL: "https://www.moddb.com/mods/ultimate-academy/downloads/ultimate-academy-v10"
+      sub_directory: "GameData/base"
+      file_name: "gtb-ua-2012.zip"
+      description: "Jedi Academy - Ultimate Academy Mod"
+      download_message: "Downloading modfiles."
+      check: 
+        - after_install_file_or_dir: "readme_ua.txt"
+
+closeout:
+  run_file: "openjk_sp.x86_64.exe"
+  sub_directory: "GameData"
+  goodbye_message: "Enjoy the mod!"

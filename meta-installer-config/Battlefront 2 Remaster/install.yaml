@@ -1,0 +1,58 @@
+default_config:
+  version: "0.1"
+  user_agent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36 Edge/12.246'
+  steam_setup: True
+  driver: "requests" #no other drivers currently supported, but there's no need yet
+  game_folder: "Star Wars Battlefront II Classic"
+  virtual_game_folder: "Star Wars BattleFront II Classic Remaster"
+  main_installer_repo_location: "https://github.com/plasticmacaroni/meta-installer/archive/refs/heads/main.zip"
+
+install_steps:
+  - requirement: 
+      disk_space: 2 #in GB
+  - website: 
+      download_URL: "https://www.moddb.com/mods/star-wars-battlefront-ii-full-hd-interface/downloads/swbf2-remaster-1-5"
+      sub_directory: "GameData"
+      file_name: "swbf2_remaster_1_5_r2.exe"
+      description: "BattleFront II Menu and UI Remaster Files"
+      download_message: "Downloading modfiles."
+      installer: ["swbf2_remaster_1_5_r2.exe"]
+      use_symlinks: True
+      check: 
+        - after_install_file_or_dir: "addon/Remaster"
+  - website: 
+      download_URL: "https://www.moddb.com/mods/hd-graphics-mod/downloads/battlefront-2-remaster-installer-10"
+      sub_directory: "GameData"
+      file_name: " BF2_Remaster_Installer_1.9.zip"
+      description: "BattleFront II General Remaster Files"
+      installation_hint: "Please complete the three executable installers, pointing at the GameData folder in mods."
+      download_message: "Downloading modfiles."
+      # use_symlinks: True
+      installer: ["BF2 Remaster Installer Part 1 - Maps 1.4.exe", "BF2 Remaster Installer Part 2 - Sides 2.2.exe", "BF2 Remaster Installer Part 3 - Space.exe"]
+      check: 
+        - after_install_file_or_dir: "data/_lvl_pc/tat/tat2.lvl"
+        - after_install_file_or_dir: "data/_lvl_pc/spa/spa1.lvl"
+        - after_install_file_or_dir: "data/_lvl_pc/tur/tur.lvl"
+  - website: 
+      download_URL: "https://www.moddb.com/mods/hd-graphics-mod/downloads/battlefront-2-remaster-dlc-installer"
+      sub_directory: "GameData"
+      file_name: "BF2_Remaster_DLC_Installer_1.0.zip"
+      description: "BattleFront II DLC Remaster Files"
+      download_message: "Downloading modfiles."
+      installer: ["BF2 Remaster DLC Installer 1.0.exe"]
+      check: 
+        - after_install_file_or_dir: "base/readme_ua.txt"
+  - website: 
+      download_URL: "https://www.moddb.com/mods/hd-graphics-mod/downloads/2019-graphics-mod-20"
+      sub_directory: "GameData"
+      file_name: " HD_Graphics_Mod_2.0_by_Harrisonfog_2019.zip"
+      description: "BattleFront II HD Textures"
+      download_message: "Downloading modfiles."
+      installer: ["swbfr_1_5_r2.exe"]
+      check: 
+        - after_install_file_or_dir: "base/readme_ua.txt"
+
+closeout:
+  run_file: "BattlefrontII.exe"
+  sub_directory: "GameData"
+  goodbye_message: "Enjoy the mod!"
